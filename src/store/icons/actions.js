@@ -1,4 +1,4 @@
-import { generateLinearGradient } from './../../utils/gradient';
+import { generateLinearGradient ,generateLinearGradientAsText} from './../../utils/gradient';
 import { copyTextToClipboard } from './utils';
 
 export const TOGGLE_TRASH_ICON = 'icons/TOGGLE_TRASH_ICON';
@@ -15,7 +15,9 @@ export const toggleTrashIcon = id => dispatch =>
 export const copyCSS = (angle, stopData, id) => (dispatch, getState) => {
   const { settings: { prefixes, fallback } } = getState();
   const css = generateLinearGradient(angle, stopData, prefixes, fallback);
-  copyTextToClipboard(css);
+  const asText = generateLinearGradientAsText(angle, stopData);
+  const copyValue=`${css} ${asText}`;
+  copyTextToClipboard(copyValue);
   dispatch({
     type: TOGGLE_CSS_COPIED,
     payload: {

@@ -45,3 +45,17 @@ export function generateLinearGradient(angle, stopData, prefixed = false, fallba
     fallback ? stopData[Object.keys(stopData)[0]] : false
   ).join('');
 }
+
+export function generateLinearGradientAsText(angle, stopData){
+
+  const colors=[];
+  const stops=[];
+  console.log(stopData);
+
+  Object.keys(stopData).forEach(key=>{
+    colors.push(stopData[key]);
+    stops.push(key);
+  });
+  return `angle:${angle}% colors:${colors.join(",")} stops:${stops.join(",")}`;
+
+}
